@@ -12,7 +12,7 @@ int getUserChoice() {
      int user_choice = 0;
 
 
-
+     // Repeatedly prompt user for an integer until the entered number is between 1 and 3
      while (user_choice < 1 || user_choice > 3) {
        printf("Player 1: How many sticks do you take (1-3)? ");
        scanf("%d", &user_choice);
@@ -69,18 +69,25 @@ int main(int argc, char** argv)
       e.g., "Computer wins." or "Computer loses."
      */
 
+     // Repeat proccess while there are sticks remaining
      while (number_sticks > 0) {
+       // Prompt user for number to take from sticks, subtract from current remaining sticks
        number_sticks -= getUserChoice();
-       printf("Number of sticks remaining: %d\n", number_sticks);
 
+       // Check if there are no remaining sticks. If so, computer wins.
        if (number_sticks <= 0) {
          printf("Computer wins.\n");
        } else {
-         number_sticks -= getComputerChoice(number_sticks);
          printf("Number of sticks remaining: %d\n", number_sticks);
 
+         // Generate number of sticks the computer takes, subtract from current remaining sticks
+         number_sticks -= getComputerChoice(number_sticks);
+
+         // Check if there are no remaining sticks. If so, computer loses
          if (number_sticks <= 0) {
            printf("Computer loses.\n");
+         } else {
+           printf("Number of sticks remaining: %d\n", number_sticks);
          }
        }
      }
