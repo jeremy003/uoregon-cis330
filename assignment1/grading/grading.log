@@ -1,0 +1,140 @@
+/bin/cp /cs/groupprojects/cis330/assignments/assignment1/master/g_Makefile . > /dev/null 2>&1
+-----<< Problem 4-first: >>------
+[2017-01-19 16:14:08.135866] gcc -std=c99 -c first.c
+Inputs: 
+STDOUT:
+
+STDERR:
+PASS
+-----<< Problem 4-first: >>------
+[2017-01-19 16:14:08.222138] /bin/rm -f first *.o && make -f g_Makefile first
+Inputs: 
+STDOUT:
+gcc -Wall -std=c99 -o first first.c
+
+STDERR:
+
+Comparing against master output:
+[2017-01-19 16:14:08.348107] diff -y -B -b first.output first.master
+Inputs: 
+STDOUT:
+							      >	** Welcome to Thinking in C **
+							      >	(You'll be glad you came!)
+
+STDERR:
+
+-----<< Problem 4-first: >>------
+[2017-01-19 16:14:08.384194] numdiffs=`diff  -B -b first.output first.master | wc -l`
+Inputs: 
+STDOUT:
+
+STDERR:
+Found 0 differences (within acceptable tolerance)
+PASS
+-----<< Problem 4-avg: >>------
+[2017-01-19 16:14:08.451480] gcc -std=c99 -c avg.c
+Inputs: 
+STDOUT:
+
+STDERR:
+PASS
+-----<< Problem 4-avg: >>------
+[2017-01-19 16:14:08.533238] /bin/rm -f avg *.o && make -f g_Makefile avg
+Inputs: 
+STDOUT:
+gcc -Wall -std=c99 -o avg avg.c
+
+STDERR:
+
+-----<< Problem 4-avg: >>------
+[2017-01-19 16:14:08.661067] ./avg
+Inputs: 10
+12
+
+STDOUT:
+Enter the 1st number:
+Enter the 2nd number:
+The average is 11.000000
+
+STDERR:
+
+-----<< Problem 4-avg: >>------
+[2017-01-19 16:14:08.692026] ./avg
+Inputs: 89
+-3
+
+STDOUT:
+Enter the 1st number:
+Enter the 2nd number:
+The average is 43.000000
+
+STDERR:
+
+Comparing against master output:
+[2017-01-19 16:14:08.728038] diff -y -B -b avg.output avg.master
+Inputs: 
+STDOUT:
+Enter the 1st number:						Enter the 1st number:
+Enter the 2nd number:						Enter the 2nd number:
+The average is 11.000000					The average is 11.000000
+Enter the 1st number:						Enter the 1st number:
+Enter the 2nd number:						Enter the 2nd number:
+The average is 43.000000					The average is 43.000000
+
+STDERR:
+
+-----<< Problem 4-avg: >>------
+[2017-01-19 16:14:08.762404] numdiffs=`diff  -B -b avg.output avg.master | wc -l`
+Inputs: 
+STDOUT:
+
+STDERR:
+Found 0 differences (within acceptable tolerance)
+PASS
+-----<< Problem 4-sticks: >>------
+[2017-01-19 16:14:08.827395] gcc -std=c99 -c sticks.c
+Inputs: 
+STDOUT:
+
+STDERR:
+PASS
+-----<< Problem 4-sticks: >>------
+[2017-01-19 16:14:08.926615] /bin/rm -f sticks *.o && make -f g_Makefile sticks
+Inputs: 
+STDOUT:
+gcc -Wall -std=c99 -o sticks sticks.c
+
+STDERR:
+sticks.c: In function ‘main’:
+sticks.c:44:15: warning: unused variable ‘computer’ [-Wunused-variable]
+     int user, computer, number_sticks;
+               ^
+sticks.c:44:9: warning: unused variable ‘user’ [-Wunused-variable]
+     int user, computer, number_sticks;
+         ^
+PASS
+-----<< Problem 4-sticks: >>------
+[2017-01-19 16:14:09.071895] ./sticks
+Inputs: 13
+3
+3
+2
+1
+
+STDOUT:
+Welcome to the game of sticks!
+How many sticks are there on the table initially (10-100)? Player 1: How many sticks do you take (1-3)? Number of sticks remaining: 10
+Computer picks 2 stick(s).
+Number of sticks remaining: 8
+Player 1: How many sticks do you take (1-3)? Number of sticks remaining: 5
+Computer picks 2 stick(s).
+Number of sticks remaining: 3
+Player 1: How many sticks do you take (1-3)? Number of sticks remaining: 1
+Computer loses.
+
+STDERR:
+PASS
+Points: {'name': 'Unck, Jeremy T', '4-first': [5, 0, 5], '4-avg': [5, 0, 5], '4-sticks': [25, 0, 25], 'log': "\n====================> Unck, Jeremy T ; 5152/bin/cp /cs/groupprojects/cis330/assignments/assignment1/master/g_Makefile . > /dev/null 2>&1\n-----<< Problem 4-first: >>------\n[2017-01-19 16:14:08.135866] gcc -std=c99 -c first.c\nInputs: \nSTDOUT:\n\nSTDERR:\nPASS\n-----<< Problem 4-first: >>------\n[2017-01-19 16:14:08.222138] /bin/rm -f first *.o && make -f g_Makefile first\nInputs: \nSTDOUT:\ngcc -Wall -std=c99 -o first first.c\n\nSTDERR:\n\nComparing against master output:\n[2017-01-19 16:14:08.348107] diff -y -B -b first.output first.master\nInputs: \nSTDOUT:\n\t\t\t\t\t\t\t      >\t** Welcome to Thinking in C **\n\t\t\t\t\t\t\t      >\t(You'll be glad you came!)\n\nSTDERR:\n\n-----<< Problem 4-first: >>------\n[2017-01-19 16:14:08.384194] numdiffs=`diff  -B -b first.output first.master | wc -l`\nInputs: \nSTDOUT:\n\nSTDERR:\nFound 0 differences (within acceptable tolerance)\nPASS\n-----<< Problem 4-avg: >>------\n[2017-01-19 16:14:08.451480] gcc -std=c99 -c avg.c\nInputs: \nSTDOUT:\n\nSTDERR:\nPASS\n-----<< Problem 4-avg: >>------\n[2017-01-19 16:14:08.533238] /bin/rm -f avg *.o && make -f g_Makefile avg\nInputs: \nSTDOUT:\ngcc -Wall -std=c99 -o avg avg.c\n\nSTDERR:\n\n-----<< Problem 4-avg: >>------\n[2017-01-19 16:14:08.661067] ./avg\nInputs: 10\n12\n\nSTDOUT:\nEnter the 1st number:\nEnter the 2nd number:\nThe average is 11.000000\n\nSTDERR:\n\n-----<< Problem 4-avg: >>------\n[2017-01-19 16:14:08.692026] ./avg\nInputs: 89\n-3\n\nSTDOUT:\nEnter the 1st number:\nEnter the 2nd number:\nThe average is 43.000000\n\nSTDERR:\n\nComparing against master output:\n[2017-01-19 16:14:08.728038] diff -y -B -b avg.output avg.master\nInputs: \nSTDOUT:\nEnter the 1st number:\t\t\t\t\t\tEnter the 1st number:\nEnter the 2nd number:\t\t\t\t\t\tEnter the 2nd number:\nThe average is 11.000000\t\t\t\t\tThe average is 11.000000\nEnter the 1st number:\t\t\t\t\t\tEnter the 1st number:\nEnter the 2nd number:\t\t\t\t\t\tEnter the 2nd number:\nThe average is 43.000000\t\t\t\t\tThe average is 43.000000\n\nSTDERR:\n\n-----<< Problem 4-avg: >>------\n[2017-01-19 16:14:08.762404] numdiffs=`diff  -B -b avg.output avg.master | wc -l`\nInputs: \nSTDOUT:\n\nSTDERR:\nFound 0 differences (within acceptable tolerance)\nPASS\n-----<< Problem 4-sticks: >>------\n[2017-01-19 16:14:08.827395] gcc -std=c99 -c sticks.c\nInputs: \nSTDOUT:\n\nSTDERR:\nPASS\n-----<< Problem 4-sticks: >>------\n[2017-01-19 16:14:08.926615] /bin/rm -f sticks *.o && make -f g_Makefile sticks\nInputs: \nSTDOUT:\ngcc -Wall -std=c99 -o sticks sticks.c\n\nSTDERR:\nsticks.c: In function \xe2\x80\x98main\xe2\x80\x99:\nsticks.c:44:15: warning: unused variable \xe2\x80\x98computer\xe2\x80\x99 [-Wunused-variable]\n     int user, computer, number_sticks;\n               ^\nsticks.c:44:9: warning: unused variable \xe2\x80\x98user\xe2\x80\x99 [-Wunused-variable]\n     int user, computer, number_sticks;\n         ^\nPASS\n-----<< Problem 4-sticks: >>------\n[2017-01-19 16:14:09.071895] ./sticks\nInputs: 13\n3\n3\n2\n1\n\nSTDOUT:\nWelcome to the game of sticks!\nHow many sticks are there on the table initially (10-100)? Player 1: How many sticks do you take (1-3)? Number of sticks remaining: 10\nComputer picks 2 stick(s).\nNumber of sticks remaining: 8\nPlayer 1: How many sticks do you take (1-3)? Number of sticks remaining: 5\nComputer picks 2 stick(s).\nNumber of sticks remaining: 3\nPlayer 1: How many sticks do you take (1-3)? Number of sticks remaining: 1\nComputer loses.\n\nSTDERR:\nPASS"}
+ENDSTUDENT Unck, Jeremy T
+
+====================> Chalmers, Max R ; 9321
