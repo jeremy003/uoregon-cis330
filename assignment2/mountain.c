@@ -50,9 +50,28 @@ void printNumberMountain(const int numPeaks, int *heights, int ***triangles) {
 
 int main() {
   int **triangles;
-  int peaks;
+
+  int peaks = 0;
+
+  while (peaks < 1 || peaks > 5) {
+    printf("Please enter the number of peaks in the mountain [1-5]: ");
+    scanf("%d", &peaks);
+
+    getchar();
+  }
+
   int *heights = (int *) malloc(peaks * sizeof(int));
-  
+
+  for (int i = 0; i < peaks; i++) {
+    while (heights[i] < 1 || heights[i] > 5) {
+      printf("Please enter the heights of peak %d [1-5]: ", (i+1));
+      scanf("%d", &heights[i]);
+
+      getchar();
+    }
+  }
+
+
 
   printNumberMountain(peaks, heights, &triangles);
 
