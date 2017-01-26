@@ -13,10 +13,6 @@ void allocateNumberTriangle(const int height, int ***triangle) {
       (*triangle)[i][j] = 0;
     }
   }
-
-  printf("triangle memory space allocated\n");
-
-
 }
 
 /* Initialize the 2-D triangle array */
@@ -37,8 +33,6 @@ void initializeNumberTriangle(const int height, int **triangle) {
     }
     count = 0;
   }
-
-  printf("initialized number triangle\n");
 }
 
 /* Print a formatted triangle */
@@ -62,6 +56,4 @@ void deallocateNumberTriangle(const int height, int ***triangle) {
   for (int i = 0; i < height; ++i)
     free((*triangle)[i]);
   free((*triangle));
-
-  printf("memory freed\n");
 }
