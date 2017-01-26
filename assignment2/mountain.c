@@ -46,6 +46,10 @@ void printNumberMountain(const int numPeaks, int *heights, int ***triangles) {
     }
     printf("\n");
   }
+
+  for (int i = 0; i < maxHeight; ++i)
+    free((*triangles)[i]);
+  free((*triangles));
 }
 
 int main() {
@@ -71,9 +75,9 @@ int main() {
     }
   }
 
-
-
   printNumberMountain(peaks, heights, &triangles);
 
+  free(heights);
+  
   return 0;
 }
