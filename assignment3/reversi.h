@@ -23,10 +23,10 @@ void allocateReversiBoard(reversi_board *board);
 void printReversiBoard(reversi_board *board);
 
 /* Check if the coordinates are a valid move. Return 1 for true, 0 for false */
-int isValidMove(reversi_board *board, int posX, int posY);
+int isValidMove(reversi_board *board, int posI, int posJ);
 
-/* Check path for friendly piece to confirm valid move. Return 1 for true, 0 for false */
-int checkPath(reversi_board *board, int posX, int posY);
+/* Check path for validity to confirm valid move. Return 1 for true, 0 for false */
+int checkPath(reversi_board *board, int posI, int offsetI, int posJ, int offsetJ);
 
 /* Check for remaining valid moves. Return 1 for true, 0 for false */
 int validMovesRemaining(reversi_board *board);
