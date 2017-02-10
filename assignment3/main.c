@@ -7,7 +7,7 @@
 
 int main() {
   reversi_board gameBoard;
-  int boardSize = -1, posI = -1, posJ = -1;
+  int boardSize = -1, posI = -1, posJ = -1, done = 0, currentColor = blackSpace;
   while (boardSize % 2 != 0) {
     printf("Please enter size of board: ");
     scanf("%d", &boardSize);
@@ -17,10 +17,24 @@ int main() {
   gameBoard.size = boardSize;
   allocateReversiBoard(&gameBoard);
   printReversiBoard(&gameBoard);
-  printf("Enter two ints: ");
-  scanf("%d%d", &posI, &posJ);
-  printf("%d\n",isValidMove(&gameBoard, posI, posJ));
-  printReversiBoard(&gameBoard);
+
+  while (done == 0) {
+    while (posI >= boardSize || posI < 0 || posJ >= boardSize || posJ < 0 || isValidMove(&gameBoard, currentColor, posI, posJ) != 1) {
+      printf("Current player: %d\nEnter a point (i j): ", currentColor);
+      scanf("%d%d", &posI, &posJ);
+      getchar();
+    }
+    printReversiBoard(&gameBoard);
+    if (currentColor == blackSpace) {
+      currentColor = whiteSpace;
+    } else {
+      currentColor = blackSpace;
+    }
+    if (validMovesRemaining(&gameBoard, currentColor) == 0) {
+      done = 1;
+    }
+  }
+
 
 
   freeReversiBoard(&gameBoard);

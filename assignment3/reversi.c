@@ -21,8 +21,14 @@ void allocateReversiBoard(reversi_board *board) {
 
 void printReversiBoard(reversi_board *board) {
   int size = (*board).size;
+  printf("  ");
+  for (int i = 0; i < size; i++) {
+    printf("%d ", i);
+  }
+  printf("\n");
 
   for (int i = 0; i < size; i++) {
+    printf("%d ", i);
     for (int j = 0; j < size; j++) {
       printf("%d ", (*board).pieces[i][j].currentColor);
     }
@@ -30,22 +36,30 @@ void printReversiBoard(reversi_board *board) {
   }
 }
 
-int isValidMove(reversi_board *board, int posI, int posJ) {
-  int size = (*board).size, offsetI = 0, offsetJ = 0;
+int isValidMove(reversi_board *board, int playerColor, int posI, int posJ) {
+  int size = (*board).size, offsetI = 0, offsetJ = 0, valid = 0, enemyColor = 0;
+  printf("checking validity. player color: %d\n", playerColor);
 
   if ((*board).pieces[posI][posJ].currentColor != emptySpace) {
     return 0;
   }
+
+  if (playerColor == whiteSpace) {
+    enemyColor = blackSpace;
+  } else {
+    enemyColor = whiteSpace;
+  }
+
   // The selected point is empty, so check the 3 x 3 matrix around it
   for (int i = posI - 1; i <= posI + 1; i++) {
     if (i < size && i >= 0) {
       for (int j = posJ - 1; j <= posJ + 1; j++) {
         if (j < size && j >= 0) {
-          if ((*board).pieces[i][j].currentColor != emptySpace) {
+          if ((*board).pieces[i][j].currentColor == enemyColor) {
             offsetI = i - posI;
             offsetJ = j - posJ;
-            if (checkPath(board, i, offsetI, j, offsetJ) == 1) {
-              printf("path is valid\n");
+            if (checkPath(board, playerColor, i, offsetI, j, offsetJ) == 1) {
+              valid = 1;
             }
           }
         }
@@ -53,13 +67,31 @@ int isValidMove(reversi_board *board, int posI, int posJ) {
     }
   }
 
-  return 0;
+  return valid;
 }
 
-int checkPath(reversi_board *board, int posI, int offsetI, int posJ, int offsetJ) {
-  int comparisonColor = (*board).pieces[posI][posJ].currentColor, size = (*board).size, i = posI + offsetI, j = posJ + offsetJ;
+int checkPath(reversi_board *board, int playerColor, int posI, int offsetI, int posJ, int offsetJ) {
+  int size = (*board).size, i = posI + offsetI, j = posJ + offsetJ, comparisonColor = 0;
+  if (playerColor == whiteSpace) {
+    comparisonColor = blackSpace;
+  } else {
+    comparisonColor = whiteSpace;
+  }
+
   while ((i < size && i >= 0) && (j < size && j >= 0)) {
-    if ((*board).pieces[i][j].currentColor != comparisonColor && (*board).pieces[i][j].currentColor != 0) {
+    if ((*board).pieces[i][j].currentColor == emptySpace) {
+      return 0;
+    }
+    if ((*board).pieces[i][j].currentColor == playerColor) {
+      // Flip pieces back to original point
+      posI = posI - offsetI;
+      posJ = posJ - offsetJ;
+      while (i != posI || j != posJ) {
+        (*board).pieces[i][j].currentColor = playerColor;
+        i -= offsetI;
+        j -= offsetJ;
+      }
+      (*board).pieces[i][j].currentColor = playerColor;
       return 1;
     }
     i += offsetI;
@@ -69,10 +101,67 @@ int checkPath(reversi_board *board, int posI, int offsetI, int posJ, int offsetJ
   return 0;
 }
 
-int validMovesRemaining(reversi_board *board) {
+int checkPathValidity(reversi_board *board, int playerColor, int posI, int offsetI, int posJ, int offsetJ) {
+  // printf("check path true starting at i = %d, j = %d, i offset = %d, j offset = %d\n", posI, posJ, offsetI, offsetJ);
 
+  int size = (*board).size, i = posI + offsetI, j = posJ + offsetJ, comparisonColor = 0;
+  if (playerColor == whiteSpace) {
+    comparisonColor = blackSpace;
+  } else {
+    comparisonColor = whiteSpace;
+  }
 
-  return 1;
+  while ((i < size && i >= 0) && (j < size && j >= 0)) {
+    if ((*board).pieces[i][j].currentColor == emptySpace) {
+      return 0;
+    }
+    if ((*board).pieces[i][j].currentColor == playerColor) {
+      return 1;
+    }
+    i += offsetI;
+    j += offsetJ;
+  }
+
+  return 0;
+}
+
+int validMovesRemaining(reversi_board *board, int playerColor) {
+  printf("looking for valid moves...\n");
+  int size = (*board).size, enemyColor = 0, offsetI = 0, offsetJ = 0, i = 0, j = 0, k = 0, s = 0;
+
+  if (playerColor == whiteSpace) {
+    enemyColor = blackSpace;
+  } else {
+    enemyColor = whiteSpace;
+  }
+  for (i = 0; i < size; i++) {
+    for (j = 0; j < size; j++) {
+      // printf("i = %d; j = %d; k = %d; s = %d\n", i, j, k, s);
+
+      for (k = i - 1; k <= i + 1; k++) {
+        // printf("i = %d; j = %d; k = %d; s = %d\n", i, j, k, s);
+
+        if (k < size && k >= 0) {
+          for (s = j - 1; s <= j + 1; s++) {
+
+            if (s < size && s >= 0) {
+              if ((*board).pieces[i][j].currentColor == enemyColor) {
+                if (i != k && j != s) {
+                  offsetI = k - i;
+                  offsetJ = s - j;
+                  if (checkPathValidity(board, playerColor, i, offsetI, j, offsetJ) == 1) {
+                    return 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return 0;
 }
 
 void freeReversiBoard(reversi_board *board) {
