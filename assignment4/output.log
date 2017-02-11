@@ -1,0 +1,125 @@
+Enter board size: 8
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o o o o o o 
+3 o o o w b o o o 
+4 o o o b w o o o 
+5 o o o o o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (b) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: -1 -1
+pass counter: 1
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o o o o o o 
+3 o o o w b o o o 
+4 o o o b w o o o 
+5 o o o o o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: -1 -1
+pass counter: 2
+Score:
+Black: 2
+White: 2
+jeremyu@ix-xenial: ~/w17/classes/cis330/uoregon-cis330/assignment4 40$ ./reversi 
+Enter board size: 8
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o o o o o o 
+3 o o o w b o o o 
+4 o o o b w o o o 
+5 o o o o o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (b) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 2 3
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b o o o o 
+3 o o o b b o o o 
+4 o o o b w o o o 
+5 o o o o o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 4 2
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b o o o o 
+3 o o o b b o o o 
+4 o o w w w o o o 
+5 o o o o o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (b) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 5 3
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b o o o o 
+3 o o o b b o o o 
+4 o o w b w o o o 
+5 o o o b o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 4 5
+pass counter: 0
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 5 4
+pass counter: 0
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 5 4
+pass counter: 0
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 2 4
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b w o o o 
+3 o o o w w o o o 
+4 o o w b w o o o 
+5 o o o b o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (b) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 4 5
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b w o o o 
+3 o o o w b o o o 
+4 o o w b b b o o 
+5 o o o b o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: 4 6
+pass counter: 0
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b w o o o 
+3 o o o w b o o o 
+4 o o w w w w w o 
+5 o o o b o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (b) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: -1 -1
+pass counter: 1
+  0 1 2 3 4 5 6 7 
+0 o o o o o o o o 
+1 o o o o o o o o 
+2 o o o b w o o o 
+3 o o o w b o o o 
+4 o o w w w w w o 
+5 o o o b o o o o 
+6 o o o o o o o o 
+7 o o o o o o o o 
+Enter coordinates for (w) player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: -1 -1
+pass counter: 2
+Score:
+Black: 3
+White: 7
