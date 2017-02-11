@@ -49,8 +49,8 @@ void Reversi::run() {
 
   while (passCounter < 2) {
     print();
-    cout << "Enter coordinates for (" << activePlayer << ") player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: ";
     while (!isValidMove(i, j)) {
+      cout << "Enter coordinates for (" << activePlayer << ") player in format i, j. Or enter -1 -1 to pass. To end the game, both players must pass consecutively: ";
       cin >> i >> j;
       if (i == -1 && j == -1) {
         passCounter += 1;
@@ -106,6 +106,9 @@ void Reversi::nextPlayer() {
 bool Reversi::isValidMove(int posI, int posJ) {
   int offsetI = 0, offsetJ = 0;
   bool valid = false;
+  if (posI < 0 || posI >= size || posJ < 0 || posJ >= size) {
+    return false;
+  }
   if (board[posI][posJ] != 'o') {
     return false;
   }
