@@ -28,9 +28,6 @@ int isValidMove(reversi_board *board, int playerColor, int posI, int posJ);
 /* Check path for validity to confirm valid move. Return 1 for true, 0 for false */
 int checkPath(reversi_board *board, int playerColor, int posI, int offsetI, int posJ, int offsetJ);
 
-/* Flip path along a path from point one to point two */
-void flipPath(reversi_board *board, int posOneI, int posOneJ, int posTwoI, int posTwoJ);
-
 /* Check for remaining valid moves. Return 1 for true, 0 for false */
 int validMovesRemaining(reversi_board *board, int playerColor);
 
