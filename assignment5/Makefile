@@ -4,7 +4,7 @@ CXXFLAGS = -g -std=c++11
 %.o: %.cpp
 	$(CXX) -c $(CXXFLAGS) $<
 
-all: test-rot13cipher
+all: test-rot13cipher test-caesar
 
 ROT13_OBJECTS = test-rot13cipher.o rot13cipher.o ioutils.o
 test-rot13cipher: $(ROT13_OBJECTS)
@@ -16,8 +16,12 @@ test-rot13cipher: $(ROT13_OBJECTS)
 ## Do the same for test-date.
 # CAESAR_OBJECTS = test-caesar.o caesar.o ioutils.o
 # test-caesar: $(CAESAR_OBJECTS)
-#	$(CXX) -o $@ $< 
+#	$(CXX) -o $@ $<
+
+CAESAR_OBJECTS = test-caesar.o caesar.o ioutils.o
+test-caesar: $(CAESAR_OBJECTS)
+	$(CXX) -o $@ $<
 
 # Remove all objects and test- programs (TODO: add your own executables)
-clean: 
-	$(RM) *.o test-rot13cipher 
+clean:
+	$(RM) *.o test-rot13cipher test-caesar
