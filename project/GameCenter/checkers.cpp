@@ -21,7 +21,7 @@ Checkers::Checkers(int s) {
     }
     for (int j = 0; j < size; j++) {
       if (colCount % 2 == 0) {
-        board[i][j].setSpace('*');
+        board[i][j].setSpace('-');
       }
       colCount++;
     }
@@ -87,6 +87,38 @@ bool Checkers::isValidLocation(int i, int j) {
   return false;
 }
 
+bool Checkers::isValidMovement(int iOne, int jOne, int iTwo, int jTwo) {
+  int iDiff = iTwo - iOne, jDiff = jTwo - jOne;
+  if (iDiff < -1 || iDiff > 1 || jDiff < -1 || jDiff > 1)
+    return false;
+
+
+  if (board[iTwo][jTwo].getSpace() == ' ') {
+    board[iTwo][jTwo].setSpace(activeColor);
+    board[iOne][jOne].setSpace(' ');
+    return true;
+  } else if (board[iTwo][jTwo].getSpace() == opponentColor) {
+    int iThree = (2 * iTwo) - iOne;
+    int jThree = (2 * jTwo) - jOne;
+    if (board[iThree][jThree].getSpace() != ' ')
+      return false;
+
+    board[iOne][jOne].setSpace(' ');
+    board[iTwo][jTwo].setSpace(' ');
+    board[iThree][jThree].setSpace(activeColor);
+    return true;
+  }
+
+  return false;
+
+}
+
+void Checkers::nextPlayer() {
+  char c = activeColor;
+  activeColor = opponentColor;
+  opponentColor = c;
+}
+
 bool Checkers::gameOver() {
   bool hasBlack = false;
   bool hasWhite = false;
@@ -110,30 +142,31 @@ bool Checkers::gameOver() {
   return true;
 }
 
-void Checkers::nextPlayer() {
-  char c = activeColor;
-  activeColor = opponentColor;
-  opponentColor = c;
-}
-
 void Checkers::play() {
-  int iCoord = -1, jCoord = -1;
+  int iCoord = -1, jCoord = -1, iMove = -1, jMove = -1;
 
   cout << "Welcome to Checkers!!!" << endl << "This is the Checkers board:" << endl;
   printBoard();
   cout << "Here's how to look at this:" << endl
   << " - The numbers represent the coordinates of each cell. For example, the top right cell is '0 9' and the bottom right cell is '9 9'." << endl
-  << " - The '*' character represents a white cell. Like in normal checkers, players can only move on the black cells." << endl
+  << " - The '-' character represents a white cell. Like in normal checkers, players can only move on the black cells." << endl
   << " - The 'B' character represents a black chip, and the 'W' character represents a white chip." << endl;
 
   while (!gameOver()) {
     cout << activeColor << "'s turn. Select a piece to move by entering i and j value (row, column): ";
     cin >> iCoord >> jCoord;
-    if (isValidLocation(iCoord, jCoord)) {
-      cout << "Valid location" << endl;
-    } else {
-      cout << "Invalid location" << endl;
+    while (!isValidLocation(iCoord, jCoord)) {
+      cout << "Invalid location, try again. Make sure the location is inbounds and is a " << activeColor << " piece: ";
+      cin >> iCoord >> jCoord;
     }
+
+    cout << "Active location chosen, now enter the coordinates of your movement. To overtake an opponent chip, enter the coordinate of that chip: ";
+    cin >> iMove >> jMove;
+    while (!isValidMovement(iCoord, jCoord, iMove, jMove)) {
+      cout << "Invalid movement. To overtake an opponent chip, enter the coordinate of that chip: ";
+      cin >> iMove >> jMove;
+    }
+    printBoard();
     nextPlayer();
   }
 }
