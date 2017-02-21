@@ -1,5 +1,6 @@
 #include <iostream>
-#include "checkers.h"
+#include "checkerspiece.hpp"
+#include "checkers.hpp"
 
 using namespace std;
 

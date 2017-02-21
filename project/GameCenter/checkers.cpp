@@ -1,13 +1,15 @@
 #include <iostream>
-#include "checkers.h"
-#include "checkerspiece.h"
+#include "checkerspiece.hpp"
+#include "checkers.hpp"
+
+using namespace std;
 
 Checkers::Checkers(int s) {
   size = s;
   activeColor = 'W';
   opponentColor = 'B';
 
-  board.assign(s, std::vector<CheckersPiece>(s, CheckersPiece()));
+  board.assign(s, vector<CheckersPiece>(s, CheckersPiece()));
 
   int colCount = 0;
   int rowCount = 0;
@@ -19,7 +21,6 @@ Checkers::Checkers(int s) {
     }
     for (int j = 0; j < size; j++) {
       if (colCount % 2 == 0) {
-        // board[i][j] = '*';
         board[i][j].setSpace('*');
       }
       colCount++;
@@ -39,7 +40,6 @@ Checkers::Checkers(int s) {
     }
     for (int j = 0; j < size; j++) {
       if (colCount % 2 == 1) {
-        // board[i][j] = activePlacement;
         board[i][j].setSpace(activePlacement);
       }
       colCount++;
@@ -54,33 +54,86 @@ Checkers::Checkers(int s) {
 }
 
 void Checkers::printBoard() {
-  std::cout << "    ";
+  cout << "    ";
   for (int i = 0; i < size; i++) {
-    std::cout << i << "   ";
+    cout << i << "   ";
   }
-  std::cout << std::endl << "   ";
+  cout << endl << "   ";
   for (int i = 0; i < size; i++) {
-    std::cout << "--- ";
+    cout << "--- ";
   }
-  std::cout << std::endl;
+  cout << endl;
   for (int i = 0; i < size; i++) {
-    std::cout << i << " | ";
+    cout << i << " | ";
     for (int j = 0; j < size; j++) {
-      std::cout << board[i][j].getSpace() << " | ";
+      cout << board[i][j].getSpace() << " | ";
     }
-    std::cout << std::endl << "   ";
+    cout << endl << "   ";
     for (int k = 0; k < size; k++) {
-      std::cout << "--- ";
+      cout << "--- ";
     }
-    std::cout << std::endl;
+    cout << endl;
   }
 }
 
+bool Checkers::isValidLocation(int i, int j) {
+  // Check if inbounds
+  if (i < 0 || i >= size || j < 0 || j >= size)
+    return false;
+
+  if (board[i][j].getSpace() == activeColor)
+    return true;
+
+  return false;
+}
+
+bool Checkers::gameOver() {
+  bool hasBlack = false;
+  bool hasWhite = false;
+  for (int i = 0; i < size; ++i) {
+    for (int j = 0; j < size; ++j) {
+      if (board[i][j].getSpace() == 'B') {
+        hasBlack = true;
+      } else if (board[i][j].getSpace() == 'W') {
+        hasWhite = true;
+      }
+      if (hasBlack && hasWhite) {
+        return false;
+      }
+    }
+  }
+  if (hasWhite && !hasBlack) {
+    cout << "White wins!" << endl;
+  } else if (!hasWhite && hasBlack) {
+    cout << "Black wins!" << endl;
+  }
+  return true;
+}
+
+void Checkers::nextPlayer() {
+  char c = activeColor;
+  activeColor = opponentColor;
+  opponentColor = c;
+}
+
 void Checkers::play() {
-  std::cout << "Welcome to Checkers!!!" << std::endl << "This is the Checkers board:" << std::endl;
+  int iCoord = -1, jCoord = -1;
+
+  cout << "Welcome to Checkers!!!" << endl << "This is the Checkers board:" << endl;
   printBoard();
-  std::cout << "Here's how to look at this:" << std::endl
-  << "The numbers represent the coordinates of each cell. For example, the top right cell is '0 9' and the bottom right cell is '9 9'." << std::endl
-  << "The '*' character represents a white cell. Like in normal checkers, players can only move on the black cells." << std::endl
-  << "The 'B' character represents a black chip, and the 'W' character represents a white chip." << std::endl;
+  cout << "Here's how to look at this:" << endl
+  << " - The numbers represent the coordinates of each cell. For example, the top right cell is '0 9' and the bottom right cell is '9 9'." << endl
+  << " - The '*' character represents a white cell. Like in normal checkers, players can only move on the black cells." << endl
+  << " - The 'B' character represents a black chip, and the 'W' character represents a white chip." << endl;
+
+  while (!gameOver()) {
+    cout << activeColor << "'s turn. Select a piece to move by entering i and j value (row, column): ";
+    cin >> iCoord >> jCoord;
+    if (isValidLocation(iCoord, jCoord)) {
+      cout << "Valid location" << endl;
+    } else {
+      cout << "Invalid location" << endl;
+    }
+    nextPlayer();
+  }
 }

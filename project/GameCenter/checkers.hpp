@@ -2,7 +2,7 @@
 #define CHECKERS_H
 
 #include <vector>
-#include "checkerspiece.h"
+#include "checkerspiece.hpp"
 
 class Checkers {
 private:
@@ -14,8 +14,11 @@ private:
 
 public:
   Checkers(int s);
+  bool isValidLocation(int i, int j);
+  bool isValidMovement(int iOne, int jOne, int iTwo, int jTwo);
+  void nextPlayer();
+  bool gameOver();
   void play();
-
 };
 
 #endif

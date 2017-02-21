@@ -1,4 +1,4 @@
-#include "checkerspiece.h"
+#include "checkerspiece.hpp"
 
 CheckersPiece::CheckersPiece() {
   space = ' ';
